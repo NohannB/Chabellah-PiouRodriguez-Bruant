@@ -19,7 +19,7 @@ L'énoncé complet ainsi que les détails liés à l'organisation et les livrabl
 Vous devez créer une copie (*fork*) de ce dépôt puis vous en servir comme dépôt pour votre projet. Pour cela :
 1. Cliquez sur le bouton `Fork` en haut à droite (ou allez sur [ce lien](https://github.com/ENSG-POO-2026-ING1/Projet-ING1/fork))
 2. Dans le menu déroulant "Owner", choisissez "ENSG-POO-2026-ING1" (pour créer le dépôt dans l'organisation et non dans votre compte personnel)
-3. Dans le champ "Repository name", entrez le numéro de votre groupe, suivi de vos noms de famille (exemple, si nous étions le groupe n°7 : "7-Nghien-Meynard-Spur-Szanto")
+3. Dans le champ "Repository name", entrez vos noms de famille (exemple, pour nous : "Nghien-Meynard-Spur-Szanto")
 4. La description n'est pas obligatoire et pourra être modifiée plus tard
 5. Vous pouvez ignorer l'option "Copy the `main` branch only" (de toute manière, il n'y a qu'une seule branche sur ce dépôt)
 6. Validez en cliquant sur le bouton vert "Create fork" en bas à droite
@@ -31,11 +31,12 @@ Après avoir réalisé un *fork* pour votre équipe, vous devez accorder l'accè
 1. Cliquez sur le bouton `Settings` en haut de votre dépôt
 2. Sur la gauche, cliquez sur `Collaborators and teams`
 3. Si GitHub vous demande de confirmer votre identité à l'aide de la double authentification, procédez à la vérification en suivant les étapes
-4. Parmi tous les boutons, cherchez `Add teams` (à côté de `Add people`, vers la droite de la page), et cliquez dessus
-5. Dans le menu déroulant qui apparait, choisissez votre votre équipe (à partir de votre numéro de groupe)
+4. Parmi tous les boutons, cherchez `Add people` (à côté de `Add teams`, vers la droite de la page), et cliquez dessus
+5. Dans le menu déroulant qui apparait, choisissez un membre de votre équipe (à partir de son identifiant GitHub)
 6. Sélectionnez le rôle "Admin" pour donner un accès total à vos coéquipiers
 7. Validez en cliquant sur le bouton vert "Add selection"
-8. Vous arrivez à nouveau sur la page qui récapitule les accès, vous devriez y voir votre équipe dans l'onglet "Direct access" (ainsi que l'équipe "Teachers" dans l'onglet "Organization access", très important pour qu'on puisse accéder à votre projet !)
+8. Répétez l'opération pour chaque membre de l'équipe
+9. Vous arrivez à nouveau sur la page qui récapitule les accès, vous devriez y voir vsos coéquipiers dans l'onglet "Direct access" (ainsi que l'équipe "Teachers" dans l'onglet "Organization access", très important pour qu'on puisse accéder à votre projet !)
 
 ## *Cloner* le dépôt sur vos machines
 
