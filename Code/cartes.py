@@ -69,3 +69,22 @@ class CarteVoirPolyominoSuivant(Carte):
 
     def activation_carte(self):
         pass
+
+
+# Cartes Passives
+class CarteAugmenterScore(Carte):
+
+    def activation_carte(self):
+        pass
+
+
+class CarteBoostCouleur(Carte):
+
+    def activation_carte(self):
+        pass
+
+
+class CarteAugmenterTauxCouleur(Carte):
+
+    def activation_carte(self):
+        pass
