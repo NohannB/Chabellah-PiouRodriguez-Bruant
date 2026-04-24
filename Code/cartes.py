@@ -20,22 +20,22 @@ class CarteTourner(Carte):
 
     def __init__(self):
         super().__init__()
-        self.cooldown = None
-        self.count_cooldown = None
+        self.cooldown = 0
+        self.count_cooldown = 0
 
-    def activation_carte(self):
-        pass
+    def activation_carte(self, polyo):
+        polyo.rotation()
 
 
 class CarteSymetrie(Carte):
 
     def __init__(self):
         super().__init__()
-        self.cooldown = None
-        self.count_cooldown = None
+        self.cooldown = 0
+        self.count_cooldown = 0
 
-    def activation_carte(self):
-        pass
+    def activation_carte(self, polyo):
+        polyo.symetrie()
 
 
 class CarteChangerPolyomino(Carte):
@@ -45,8 +45,8 @@ class CarteChangerPolyomino(Carte):
         self.cooldown = 2
         self.count_cooldown = 0
 
-    def activation_carte(self):
-        pass
+    def activation_carte(self, polyo):
+        polyo.modifierPolyo()
 
 
 class CarteLibererCasePolluee(Carte):
@@ -56,7 +56,7 @@ class CarteLibererCasePolluee(Carte):
         self.cooldown = 3
         self.count_cooldown = 0
 
-    def activation_carte(self):
+    def activation_carte(self, grille, posx, posy):
         pass
 
 
@@ -74,8 +74,8 @@ class CarteVoirPolyominoSuivant(Carte):
 # Cartes Passives
 class CarteAugmenterScore(Carte):
 
-    def activation_carte(self):
-        pass
+    def activation_carte(self, partie):
+        partie.score += 20
 
 
 class CarteBoostCouleur(Carte):
