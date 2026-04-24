@@ -7,7 +7,12 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6.QtCore import Qt
 import numpy as np
+import grilles
+
+
+
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog, n=10):
@@ -27,7 +32,7 @@ class Ui_Dialog(object):
                 self.grille_jeu.addWidget(self.grid[i][j], i, j, 1, 1)
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
-
+    
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
@@ -36,11 +41,65 @@ class Ui_Dialog(object):
                 self.grid[i,j].setText(_translate("Dialog", f"c{i}{j}"))
 
 
+class Windows(QtWidgets.QDialog) : 
+    def __init__(self, n, p, g) : 
+        super().__init__()
+
+        self.ui = Ui_Dialog() 
+        self.ui.setupUi(self,n)
+        self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
+        self.setFocus()
+        self.p = p
+        self.g = g 
+        self.n = n
+
+        
+    
+    def keyPressEvent(self, e):
+
+        if e.key() == Qt.Key.Key_Up:
+            try:
+                self.p.translate(-1,0,self.n)
+                self.g.afficher(self.ui) 
+                self.p.afficher(self.ui)
+            except : 
+                pass
+        elif e.key() == Qt.Key.Key_Down:
+            try:
+                self.p.translate(1,0,self.n)
+                self.g.afficher(self.ui) 
+                self.p.afficher(self.ui)
+            except : 
+                pass
+        elif e.key() == Qt.Key.Key_Left:
+            try:
+                self.p.translate(0,-1,self.n)
+                self.g.afficher(self.ui) 
+                self.p.afficher(self.ui)
+            except : 
+                pass
+        elif e.key() == Qt.Key.Key_Right:
+            try:
+                self.p.translate(0,1,self.n)
+                self.g.afficher(self.ui) 
+                self.p.afficher(self.ui)
+            except : 
+               pass
+
+
+
 if __name__ == "__main__" : 
     import sys 
     app = QtWidgets.QApplication(sys.argv) 
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog,7) 
-    Dialog.show() 
+    p = grilles.Polyomino()
+    g = grilles.GrilleJeu(10)
+    print(p)
+    print(g)
+    d = Windows(10, p, g)  
+    d.show()
+    p = grilles.Polyomino()
+    p.afficher(d.ui)
+
+
+
     sys.exit(app.exec())

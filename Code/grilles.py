@@ -120,9 +120,7 @@ class Polyomino():
         self.array = new
 
     def translate(self, dx, dy, ngrid):
-        assert self.x+dx + \
-            self.array.shape[0] < ngrid and self.y + \
-            dy+self.array.shape[1] < ngrid
+        assert (self.x+dx +self.array.shape[0] <= ngrid) and (self.y + dy+self.array.shape[1] <= ngrid) and (self.x+dx>=0 ) and (self.y+dy>=0)
         self.x += dx
         self.y += dy
 
@@ -148,6 +146,13 @@ class Polyomino():
                     c += " "
             c += "\n"
         return c
+    
+    def afficher(self, ui) : 
+        for i in range(self.array.shape[0]): 
+            for j in range(self.array.shape[1]) : 
+                if self.array[i,j] : 
+                    ui.grid[self.x+i , self.y+j].setStyleSheet("background : white; ")
+        
 
 
 if __name__ == "__main__":
