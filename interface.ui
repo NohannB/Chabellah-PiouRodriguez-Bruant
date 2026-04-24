@@ -89,7 +89,7 @@
     <string>Carte_5</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_6">
+  <widget class="QPushButton" name="Parametres">
    <property name="geometry">
     <rect>
      <x>10</x>
