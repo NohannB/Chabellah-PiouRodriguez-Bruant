@@ -50,7 +50,7 @@ class Case():
 
 
 class GrilleJeu():
-
+    dico = {'Vide' : 'Blue', 'Poisson' : 'Orange', 'Rocher' : 'grey'}
     def __init__(self, n_cases=10):
         self.n_cases = n_cases
         self.array = np.array(
@@ -58,6 +58,12 @@ class GrilleJeu():
 
     def __getitem__(self, key):
         return self.array[key[0], key[1]]
+    
+    def afficher(self, ui) : 
+        for i in range(self.n_cases) : 
+            for j in range(self.n_cases) : 
+                etat = self.array[i,j].getEtat()
+                ui.grid[i,j].setStyleSheet(f"background : {GrilleJeu.dico[etat]}")
 
 
 class Polyomino():

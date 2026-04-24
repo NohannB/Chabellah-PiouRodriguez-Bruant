@@ -14,7 +14,7 @@ g = grilles.GrilleJeu()
 g[0,0].changeEtat('Rocher')
 g[5,5].changeEtat('Rocher')
 g[2,0].changeEtat('Poisson')
-g[3,0].changeEtat('Corail')
+g[3,0].changeEtat('Poisson')
 g.afficher(ui)
 """
 print(ui.grid)
