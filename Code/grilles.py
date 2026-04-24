@@ -120,6 +120,17 @@ class Polyomino():
         self.x += dx
         self.y += dy
 
+    def modifierPolyo(self):
+        self.array = random.choices(
+            Polyomino.ListFormes, weights=Polyomino.ListPoidsFormes, k=1)[0]
+        self.couleur = random.choices(
+            Polyomino.ListCouleurs, weights=Polyomino.ListPoidsCouleurs, k=1)[0]
+
+        for i in range(random.randint(0, 3)):
+            self.rotation()
+            for i in range(random.randint(0, 1)):
+                self.symetrie()
+
     def __str__(self):
         s = self.array.shape
         c = ""
