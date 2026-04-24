@@ -61,6 +61,8 @@ class GrilleJeu():
 
 
 class Polyomino():
+
+    # Création des formes
     ListFormes = []
     ListFormes.append(np.array([[1, 1, 1],
                                 [1, 1, 1],
@@ -75,18 +77,26 @@ class Polyomino():
     ListFormes.append(np.array([[0, 1, 1],
                                 [1, 1, 0]]))
 
+    # Création des couleurs
     ListCouleurs = ['corail', 'poisson', 'crustace',
                     'pollution', 'toto', 'chalutier']
 
+    # Création des poids (statistiques) des formes et couleurs
     ListPoidsCouleurs = [22, 22, 22, 12, 12, 10]
     ListPoidsFormes = [10, 20, 10, 20, 20, 20]
 
+    # Points des couleurs
+    ListPointsCouleurs = [1, 1, 1, -1, -1, 0]
+
     def __init__(self):
-        # Création de forme et couleur aléatoire
+        # Création forme et couleur aléatoire
         self.array = random.choices(
             Polyomino.ListFormes, weights=Polyomino.ListPoidsFormes, k=1)[0]
         self.couleur = random.choices(
             Polyomino.ListCouleurs, weights=Polyomino.ListPoidsCouleurs, k=1)[0]
+
+        # Score de base du polyomino
+        self.score = np.count_nonzero(self.array == 1)
 
         # Position de base dans la grille
         self.x = 0
@@ -99,21 +109,29 @@ class Polyomino():
                 self.symetrie()
 
     def rotation(self):
-        l, c = self.array.shape
-        new = np.zeros((c, l))
-        for i in range(c):
-            new[i, :] = self.array[:, i].T
-        self.array = new
-        self.symetrie()
+        """
+            Vient tourner le polyomino et le replacer en haut à gauche
+        """
+        self.array = np.rot90(self.array)
+        self.x = 0
+        self.y = 0
 
     def symetrie(self):
+        """
+            Vient faire la symétrie du polyomino et le replacer en haut à gauche
+        """
         l = self.array.shape[0]
         new = np.zeros(self.array.shape)
         for i in range(l):
             new[i, :] = self.array[i, ::-1]
         self.array = new
+        self.x = 0
+        self.y = 0
 
     def translate(self, dx, dy, ngrid):
+        """
+            Permet de déplacer le polyomino
+        """
         assert self.x+dx + \
             self.array.shape[0] < ngrid and self.y + \
             dy+self.array.shape[1] < ngrid
@@ -121,6 +139,9 @@ class Polyomino():
         self.y += dy
 
     def modifierPolyo(self):
+        """
+            Redéfinit aléatoirement le polyomino
+        """
         self.array = random.choices(
             Polyomino.ListFormes, weights=Polyomino.ListPoidsFormes, k=1)[0]
         self.couleur = random.choices(
@@ -130,8 +151,13 @@ class Polyomino():
             self.rotation()
             for i in range(random.randint(0, 1)):
                 self.symetrie()
+        self.x = 0
+        self.y = 0
 
     def __str__(self):
+        """
+            Affichage pour test du polyomino
+        """
         s = self.array.shape
         c = ""
         for i in range(s[0]):
@@ -143,6 +169,14 @@ class Polyomino():
             c += "\n"
         return c
 
+    @classmethod
+    def AugmenterDropCouleur(couleur):
+        for i in range(Polyomino.ListCouleurs):
+            if Polyomino.ListCouleurs[i] == couleur:
+                Polyomino.ListPoidsCouleurs[i] += 10
+            else:
+                Polyomino.ListPoidsCouleurs[i] -= 2
+
 
 if __name__ == "__main__":
     grille = GrilleJeu()
@@ -151,9 +185,8 @@ if __name__ == "__main__":
     grille[2, 2].changeEtat("Corrail")
     print(grille[2, 2].getEtat())
 
-    # tab = np.array([[1, 0, 0], [1, 1, 1]])
     p = Polyomino()
-    print(p.couleur)
+    print(p.couleur, p.score)
     print(p)
     p.rotation()
     print(p)
